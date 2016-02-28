@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每天扫描一次开始 从0点开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<bean id="myProjectJob" class="com.bjwg.back.service.impl.timer.MyProjectTimerImpl"/>
+	<bean id="myProjectJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <!--false表示等上一个任务执行完后再开启新的任务-->
+	    <property name="targetObject">
+	        <ref bean="myProjectJob"/>
+	    </property>
+	    <property name="targetMethod">
+	        <value>execute</value>
+	    </property>
+	</bean>
+	<!-- 预约时间定时器 -->
+	<bean id="myProjectCron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="myProjectJobDetail" />
+		</property>
+		<!-- cron表达式 -->
+		<property name="cronExpression">
+			 <value>01 42 21 */1 * ?</value>  <!-- 正式扫描间隔  每天凌晨24:00:01-->
+			<!-- <value>0 0/1 * * * ?</value> -->
+		</property>
+	</bean>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每天扫描一次结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每隔5分钟扫描一次  开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->	
+	
+	<bean id="orderJob" class="com.bjwg.back.service.impl.timer.OrderTimerImpl"/>
+	<bean id="orderJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <!--false表示等上一个任务执行完后再开启新的任务-->
+	    <property name="targetObject">
+	        <ref bean="orderJob"/>
+	    </property>
+	    <property name="targetMethod">
+	        <value>execute</value>
+	    </property>
+	</bean>
+	<!-- 预约时间定时器 -->
+	<bean id="orderCron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="orderJobDetail" />
+		</property>
+		<!-- cron表达式 -->
+		<property name="cronExpression">
+			<value>0 0/5 * * * ?</value> <!-- 正式扫描间隔 -->
+		</property>
+	</bean>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每隔5分钟扫描一次  结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每隔1小时扫描一次  开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->	
+	
+	<bean id="preorderJob" class="com.bjwg.back.service.impl.timer.PreorderTimerImpl"/>
+	<bean id="preorderJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <!--false表示等上一个任务执行完后再开启新的任务-->
+	    <property name="targetObject">
+	        <ref bean="preorderJob"/>
+	    </property>
+	    <property name="targetMethod">
+	        <value>execute</value>
+	    </property>
+	</bean>
+	<!-- 预约时间定时器 -->
+	<bean id="preorderCron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="preorderJobDetail" />
+		</property>
+		<!-- cron表达式 -->
+		<property name="cronExpression">
+			<!--<value>0 0/5 * * * ?</value>   -->
+			 <value>50 59 6-0 * * ?</value> <!-- 正式扫描间隔 早上6点到晚上24点的第59分 50秒触发扫描一次 -->
+		</property>
+	</bean>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每隔5分钟扫描一次  结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每天扫描一次开始 从9点扫描>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<bean id="remindJob" class="com.bjwg.back.service.impl.timer.RemindTimerImpl"/>
+	<bean id="remindJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <!--false表示等上一个任务执行完后再开启新的任务-->
+	    <property name="targetObject">
+	        <ref bean="remindJob"/>
+	    </property>
+	    <property name="targetMethod">
+	        <value>execute</value>
+	    </property>
+	</bean>
+	<!--预约时间定时器-->
+	<bean id="remindCron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="remindJobDetail" />
+		</property>
+		<property name="cronExpression">
+			 <value>0 0 9 * * ?</value><!--正式扫描间隔  每天早上09:00:00-->
+		</property>
+	</bean>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>每天扫描一次结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<bean id="startQuertz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="myProjectCron" />
+				<ref bean="orderCron" />
+				<ref bean="preorderCron" />
+				<ref bean="remindCron" />
+			</list>
+		</property>
+	</bean>
+</beans>

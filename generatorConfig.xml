@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <classPathEntry location="D:\mysql-connector-java-commercial-5.1.25-bin" />
+  <!-- flat:该模型为每一张表只生成一个实体类。这个实体类包含表中的所有字段。**这种模型最简单，推荐使用。 -->
+  <context id="ORACLETables" targetRuntime="MyBatis3" defaultModelType="flat">
+  	<!-- Pagination -->  
+    <plugin type="com.bjwg.back.util.MySqlPaginationPlugin"></plugin>  
+  	<commentGenerator>
+  		<!-- 是否去除自动生成的注释 true：是 ： false:否 
+  		 使用MBG生成的代码时，建议尽可能不要去修改自动生成的代码，而且要生成带有@mbggenerated，这样才不会在每次重新生成代码的时候需要手动修改好多内容。
+  		 -->
+  		<property name="suppressAllComments" value="false"/>
+  		<property name="suppressDate" value="true"/>
+  	</commentGenerator>
+  	<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+    				connectionURL="jdbc:mysql://192.168.10.200:3306/bjwg" 
+    				userId="bjwg" 
+    				password="bjwg123" />
+    <!-- 
+    	connectionURL=jdbc:oracle:thin:@120.24.217.254:1521:ORCL
+    	password=Qkx2V0nO
+    	如果为true
+    	如果精度>0或者长度>18，就会使用java.math.BigDecimal
+		如果精度=0并且10<=长度<=18，就会使用java.lang.Long
+		如果精度=0并且5<=长度<=9，就会使用java.lang.Integer
+		如果精度=0并且长度<5，就会使用java.lang.Short
+    
+     -->				
+  	<javaTypeResolver>
+  		<property name="forceBigDecimals" value="false"/>
+  	</javaTypeResolver>
+  	
+    <javaModelGenerator targetPackage="com.bjwg.back.model" targetProject="BJWG_BACK\src">
+    	<!-- enableSubPackages:是否让schema作为包的后缀 -->
+    	<property name="enableSubPackages" value="true"/>
+    	<!-- 从数据库返回的值被清理前后的空格  -->
+    	<property name="trimStrings" value="true"/>
+    	<!-- 是否对数据库查询结果进行trim操作，如果设置为true就会生成类似这样
+    		public void setUsername(String username) {this.username = username == null ? null : username.trim();}
+    		的setter方法。默认值为false。 -->
+    	<property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+    <sqlMapGenerator targetPackage="com.bjwg.back.mapper" targetProject="BJWG_BACK\src"/>
+    
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.bjwg.back.dao" targetProject="BJWG_BACK\src">
+    	<property name="enableSubPackages" value="false"/>
+    </javaClientGenerator>
+    <!-- 不生成的sql -->
+    <table schema="" tableName="BJWG_USER_PREORDER" domainObjectName="UserPreorder" alias="t"
+    	enableUpdateByExample="false" enableDeleteByExample="false" >
+    	<!-- 插入成功后在对象中返回主键id，仅适用于oracle 
+    	<generatedKey column="wallet_change_id" sqlStatement="select BJWG_WALLET_CHANGE_Seq.currval from dual" identity="true" type="post"/>-->
+    	<!-- 插入成功后在对象中返回主键id -->
+    	<generatedKey column="user_id" sqlStatement="MySql" identity="true" type="post"/>
+    	<!-- 覆盖默认的类型
+    	<columnOverride column="user_id" jdbcType="Integer" javaType="Integer"></columnOverride>
+    	 -->
+    </table>
+  </context>
+</generatorConfiguration>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:context="http://www.springframework.org/schema/context" 
+        xmlns:aop="http://www.springframework.org/schema/aop"  
+        xmlns:tx="http://www.springframework.org/schema/tx"  
+        xsi:schemaLocation="  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd  
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+	<!-- *****************************service ********************************************-->
+<!-- 管理员service -->
+ <bean name="managerService" class="com.bjwg.back.service.impl.system.ManagerServiceImpl"></bean>
+ 
+ <!-- 用户登录service -->
+ <bean name="loginService" class="com.bjwg.back.service.impl.system.LoginServiceImpl"></bean>
+ 
+ <!-- 角色service -->
+ <bean name="roleService" class="com.bjwg.back.service.impl.system.RoleServiceImpl"></bean>
+ 
+ <!-- 资源service -->
+ <bean name="rescService" class="com.bjwg.back.service.impl.system.RescServiceImpl"></bean>
+ 
+<!-- 系统操作日志service --> 
+<bean id="operationLogService" class="com.bjwg.back.service.impl.OperationLogServiceImpl"></bean>
+
+<!-- 系统配置service --> 
+<bean id="sysconfigService" class="com.bjwg.back.service.impl.SysconfigServiceImpl"></bean>
+
+<!-- 字典service --> 
+<bean id="dictService" class="com.bjwg.back.service.impl.DictServiceImpl"></bean>
+
+<!-- 字典明细service --> 
+<bean id="dictDetailService" class="com.bjwg.back.service.impl.DictDetailServiceImpl"></bean>
+
+<!-- 用户service --> 
+<bean id="userService" class="com.bjwg.back.service.impl.UserServiceImpl"></bean>
+
+<!-- 公告service --> 
+<bean id="bulletinService" class="com.bjwg.back.service.impl.BulletinServiceImpl"></bean>
+
+<!-- 资讯service --> 
+<bean id="infoService" class="com.bjwg.back.service.impl.InfoServiceImpl"></bean>
+
+<!-- 抢购项目service --> 
+<bean id="projectService" class="com.bjwg.back.service.impl.ProjectServiceImpl"></bean>
+
+<!-- 我的收益service --> 
+<bean id="myProjectService" class="com.bjwg.back.service.impl.MyProjectServiceImpl"></bean>
+
+<!-- 用户钱包service --> 
+<bean id="walletService" class="com.bjwg.back.service.impl.WalletServiceImpl"></bean>
+
+<!-- 用户提现service --> 
+<bean id="withdrawService" class="com.bjwg.back.service.impl.WithdrawServiceImpl"></bean>
+
+<!-- 用户记录变更service -->
+<bean id="walletChangeService" class="com.bjwg.back.service.impl.WalletChangeServiceImpl"></bean>
+
+<!-- 用户支付信息service --> 
+<bean id="payService" class="com.bjwg.back.service.impl.PayServiceImpl"></bean>
+
+<!-- 用户消息列表service --> 
+<bean id="messageService" class="com.bjwg.back.service.impl.MessageServiceImpl"></bean>
+
+<!-- 赠送猪仔service --> 
+<bean id="presentService" class="com.bjwg.back.service.impl.PresentServiceImpl"></bean>
+
+<!-- 线下门店service --> 
+<bean id="shopService" class="com.bjwg.back.service.impl.ShopServiceImpl"></bean>
+
+<!-- 地址service --> 
+<bean id="areaService" class="com.bjwg.back.service.impl.AreaServiceImpl"></bean>
+
+<!-- 订单service --> 
+<bean id="orderService" class="com.bjwg.back.service.impl.OrderServiceImpl"></bean>
+
+<!-- 我的收益service --> 
+<bean id="mycouponService" class="com.bjwg.back.service.impl.MyCouponServiceImpl"></bean>
+
+<!-- 我的收益service --> 
+<bean id="myCouponUseService" class="com.bjwg.back.service.impl.MyCouponUseServiceImpl"></bean>
+
+<!-- 服务协议service --> 
+<bean id="protocolService" class="com.bjwg.back.service.impl.ProtocolServiceImpl"></bean>
+
+<!-- 首页轮播图service --> 
+<bean id="slideService" class="com.bjwg.back.service.impl.SlideServiceImpl"></bean>
+
+ 	<!-- 读取配置文件 -->
+ 	<context:property-placeholder location="classpath:com/bjwg/config/c3p0.properties"/>
+ 	<!-- 配置数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+         <property name="driverClass">    
+            <value>${driverClass}</value>    
+        </property>    
+        <property name="jdbcUrl">    
+            <value>${jdbcUrl}</value>    
+        </property>    
+        <property name="user">    
+            <value>${user}</value>    
+        </property>    
+        <property name="password">    
+            <value>${password}</value>    
+        </property>    
+      
+        <!--连接池中保留的最小连接数。-->   
+        <property name="minPoolSize">    
+            <value>5</value>    
+        </property>    
+      
+        <!--连接池中保留的最大连接数。Default: 15 -->   
+        <property name="maxPoolSize">    
+            <value>30</value>    
+        </property>    
+      
+        <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->   
+        <property name="initialPoolSize">    
+            <value>10</value>    
+        </property>    
+      
+        <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->   
+        <property name="maxIdleTime">    
+            <value>60</value>    
+        </property>    
+      
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->   
+        <property name="acquireIncrement">    
+            <value>5</value>    
+        </property>    
+      
+         <!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements    
+		          属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。    
+		          如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0-->   
+        <property name="maxStatements">    
+            <value>0</value>    
+        </property>    
+      
+        <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->   
+        <property name="idleConnectionTestPeriod">    
+            <value>60</value>    
+        </property>    
+      
+        <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->   
+        <property name="acquireRetryAttempts">    
+            <value>30</value>    
+        </property>    
+      
+         <!--获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效    
+		          保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试    
+		          获取连接失败后该数据源将申明已断开并永久关闭。Default: false-->   
+        <property name="breakAfterAcquireFailure">    
+            <value>false</value>    
+        </property>    
+      
+         <!--因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交的    
+		          时候都将校验其有效性。建议使用idleConnectionTestPeriod或automaticTestTable    
+		          等方法来提升连接测试的性能。Default: false -->   
+        <property name="testConnectionOnCheckout">    
+            <value>false</value>    
+        </property>    
+        
+    </bean>
+    
+    <!-- 配置Jdbc模板 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <!-- 注册springFactory，该类提供getBean方法 -->
+    <bean id="springFactory" class="com.bjwg.back.util.SpringFactory"/>
+    
+    <!-- sessionFactory 将spring和mybatis整合 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        
+        <!-- 加载mapper文件--> 
+        <property name="mapperLocations" value="classpath:com/bjwg/back/mapper/*.xml" />  
+        <property name="configLocation" value="classpath:com/bjwg/config/mybatis-config.xml"></property>  
+    </bean>
+    
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+  	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="basePackage" value="com.bjwg.back.dao" />
+    	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+  	</bean>
+  	
+    <!-- 配置事务管理器 -->
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+       <property name="dataSource" ref="dataSource" />  
+   </bean>
+   <!-- 只对业务逻辑层实施事务  proxy-target-class="true"  -->
+	<aop:config  >  
+		<aop:pointcut id="fooServiceMethods" expression="execution(* com.bjwg.back.service.impl..*.*(..))"/>   
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceMethods"/>   
+	</aop:config>  
+	<!--  声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">  
+	    <tx:attributes>  
+             <!-- 读取数据方法，一般采用只读事务-->  
+            <tx:method name="get*" read-only="true"/>  
+            <tx:method name="query*" read-only="true"/>  
+            <tx:method name="find*" read-only="true"/>  
+            <tx:method name="load*" read-only="true"/>  
+            <!--以下方法，如save，update，insert等对数据库进行写入操作的方法，当产生Exception时进行回滚 -->  
+            <tx:method name="insert*"   />  
+            <tx:method name="update*"  />  
+            <tx:method name="save*"  />  
+            <tx:method name="add*"  />  
+            <tx:method name="create*"  />  
+            <tx:method name="del*"  />  
+            <tx:method name="remove*"  />  
+            <tx:method name="batchCommit*"  />  
+            <!--2015-03-11，修改为抛出异常都进行回滚 -->  
+            <tx:method name="*" rollback-for="Exception"/>   
+	    </tx:attributes>  
+	</tx:advice>  
+	<!-- 自动扫描组件，需要把controller去掉，否则影响事务管理   -->
+     <context:component-scan base-package="com.bjwg">
+     	<context:exclude-filter type="regex" expression="com.bjwg.back.controller"/>
+     </context:component-scan>
+</beans>

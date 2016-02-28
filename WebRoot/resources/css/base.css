@@ -1,0 +1,288 @@
+/**
+ * Mark CSS framework
+ * CSS Reset based on YUI 3.4.1 (build 4118) and Alice
+ * By qiheng
+ * 2015-07-27
+*/
+
+/* 防止用户自定义背景颜色对网页的影响，同时让用户可以自定义字体的大小 */
+
+
+/* 重置所有浏览器的内外边距 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+
+/* 定义字体、行高，\5b8b\4f53 就是宋体的意思，防止有的浏览器不兼容 simsun 的用法 */
+body{font-family: "Microsoft YaHei" ! important;
+}
+
+/* 重设 html5 的标签 */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display:block;
+	margin:0;
+	padding:0;
+}
+
+/* html5 的媒体标签跟 img 标签保持一致 */
+audio, canvas, video {
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+}
+
+/* 去掉按钮和链接外围的虚线 */
+input:focus, a:focus {
+	outline:none;
+}
+
+/* 去掉这两个元素的默认边框 */
+fieldset, img {
+	border:0;
+}
+
+/* 重置它们默认的字体样式 */
+address, caption, cite, code, dfn, em, /* strong, */ th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+
+/* 去掉项目符号，由于 li 可以继承，所以定义到 ol 和 ul 上就行了 */
+ol, ul {
+	list-style:none;
+}
+
+/* 默认样式为居中，但是习惯上一般不用居中 */
+caption, th {
+	text-align:left;
+}
+
+/* 重置标题的默认样式，让后期自定遥，来自 YUI */
+h1, h2, h3, h4, h5, h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+
+q:before, q:after {
+	content:'';
+}
+
+/* firefox 下这两个元素有边框，去掉并重置字体样式 */
+abbr, acronym {
+	border:0;
+	font-variant:normal;
+}
+
+/* 统一的上标和下标，来自 Alice */
+sub, sup {
+    font-size:75%;
+	line-height:0;
+	position:relative;
+	vertical-align: baseline;
+}
+:root sub, :root sup{
+	vertical-align: baseline; /* for ie9 and other mordern browsers */
+}
+sup {
+	top:-0.5em;
+}
+sub {
+	bottom:-0.25em;
+}
+
+/* 表单元素不继承 font 样式，故而重设 */
+button, input, textarea, select {
+	font-family:tahoma, arial, simsun, sans-serif;
+	font-size:inherit;
+	font-weight:inherit;
+	line-height:1.5;
+	vertical-align:middle;
+}
+button, input, textarea, select {
+	*font-size:100%;
+}
+
+/* 禁止新版本的火狐和谷歌下文本域可由用户自由拖动的问题 */
+textarea {
+	resize:none;
+}
+
+/* 默认重合单元格 */
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+/* IE 下的 th 不继承 text-align */
+th {
+	text-align:inherit;
+}
+
+/* 让链接以基线对齐，来自 YUI */
+a {
+	vertical-align:baseline;
+	
+}
+.footer_nav a {
+	vertical-align:baseline;
+	font-family: "Microsoft Yahei","微软雅黑";
+	font-size:16px;
+	color:#333;
+}
+
+
+/* 让链接在 hover 状态下具有下划线 */
+a:hover {
+	text-decoration:none;
+}
+
+/* 这两个元素的下划线，默认去掉 */
+ins, a {
+	text-decoration:none;
+}
+
+/*functions*/
+/* 不易引起问题的清除浮动，但是与空标签配合使用 */
+.clear {
+	display:block;
+	float:none;
+	clear:both;
+	overflow:hidden;
+	visibility:hidden;
+	width:0;
+	height:0;
+	background:none;
+	border:0;
+	font-size:0;
+}
+
+/* 不需要用空标签的 clearfix，用于内部包含浮动 */
+.clearfix:before, .clearfix:after {
+	content:"";
+	display:table;
+}
+.clearfix:after {
+	clear:both;
+}
+.clearfix {
+	*zoom:1;
+}
+
+/* 向左右浮动的时候，同时解决 IE6 下的双边距问题 */
+.left {
+	float:left;
+	*display:inline;
+}
+.right {
+	float:right;
+	*display:inline;
+}
+
+/* 跨浏览器兼容的 inline-block，用于外围的包含元素 */
+.dib-wrap{
+	font-size:0;
+	*word-spacing:-1px;
+}
+
+/* 需要 display:inline-block 的元素，但是外围必须有 .dib-wrap */
+.dib-wrap .dib{
+	font-size:12px;
+	letter-spacing:normal;
+	word-spacing: normal;
+	vertical-align:top;
+}
+
+/* 为 webkit 单独优化字距 */
+@media screen and (-webkit-min-device-pixel-ratio:0){
+.dib-wrap{
+	letter-spacing:-5px;
+}
+}
+
+/* 修复 IE6/7 的问题 */
+.dib{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+}
+
+
+/*头部样式*/
+.banner_box{ width:100%; height:36px; line-height:36px; background:#31323b; min-width:1200px; position:relative;}
+.center{ width:1200px; height:auto;position:relative; margin:0 auto;}
+.f_left{ float:left;}
+.f_right{ float:right;}
+.banner_left,.banner_right{ height:36px; overflow:hidden;}
+.banner_a{ width:36px; height:36px; cursor:pointer; margin-right:6px;}
+.banner_a img,.banner_phone img{width:36px; height:36px; display:block; border:0px; outline:0px;}
+.banner_phone{ height:36px; line-height:36px; color:#FFF; font-size:16px; cursor:pointer; float:left; margin-left:30px;}
+.banner_phone span{height:36px; line-height:36px; float:left;}
+.banner_right .banner_a{ width:4em; text-align:center; display:block;}
+.banner_right a span{height:36px; line-height:36px; float:right;color:#FFF; font-size:14px; width:4em; text-align:center; display:block;}
+
+.nav_box{width:100%; height:auto; background:#ffffff; min-width:1200px; position:relative; z-index:10;}
+.logo_box{ height:100px; width:120px; float:left; display:block; margin:5px 0px; margin-left:46px;}
+.logo_box img{height:100px; width:120px; border:0px; display:block;}
+.nav_ul{  height:54px; width:840px;position:relative; float:right; margin-right:145px; margin-top:20px;}
+.nav_ul li{ height:54px; width:120px; line-height:54px; text-align:center; float:left; position:relative;}
+.nav_ul li a{ height:50px; line-height:50px; width:120px; border-bottom:4px solid #fff; text-align:center; display:block; cursor:pointer; font-size:16px; color:#615968;}
+.nav_ul li a.hover_nav_a{border-bottom:4px solid #97bf0d;}
+.nav_ul li a:hover{ text-decoration:none;}
+.nav_ul li .sub_nav{width:120px; position:absolute; float:left; left:0px; top:54px; display:none; border-top:0px; z-index:10; background-color:#FFF;}
+.nav_ul li .sub_nav a{ height:38px; line-height:38px; }
+.nav_ul .about_ym:hover .about_ym_a{border-bottom:4px solid #97bf0d;}
+.nav_ul li:hover .sub_nav{ display:block;}
+
+
+
+.banner_code_box{ width:250px; height:auto; position:absolute; right:-80px; bottom:-138px; z-index:999; display:none;}
+.wechat_code_box{ right:0px; left:30px;}
+.banner_code_box .code_tit{ width:27px; height:27px; margin-left:74px;}
+.code_box{ width:250px; height:110px; background:#eee;box-shadow: 1px 1px 2px #999; }
+.code_box img{ width:90px; height:90px; margin:10px; float:left; display:block; outline:0px;}
+.code_main{ width:120px; float:right; margin-top:15px; margin-right:15px; text-align:left;}
+.code_main_p{ line-height:1.3; font-size:20px; color:#333;}
+.code_main_span{line-height:1.4; font-size:12px; color:#333; margin-top:10px;}
+
+
+/*底部页脚样式*/
+.footer_box{ width:100%; height:auto; min-width:1200px;position:relative; background:#ebebeb; padding-top:30px; padding-bottom:20px;}
+.footer_left{ width:700px; float:left; height:auto;}
+.footer_gz,.footer_nav{ width:800px; height:auto; position:relative;margin-left:60px;}
+.footer_gz span{ float:left; line-height:46px; height:46px;font-size:16px; color:#615968;}
+.footer_gz a{ width:46px; height:46px; float:left; margin-left:20px; cursor:pointer;}
+.footer_gz a img{width:46px; height:46px; display:block; outline:0px; border:0px;}
+.footer_nav{}
+.footer_logo{ width:96px; height:80px; float:left; margin-top:10px; display:block; margin-right:20px;}
+.footer_logo img{width:96px; height:80px; display:block; border:0px; outline:0px;}
+.footer_nav_p{ margin-top:40px; float:left; margin-left:10px; height:20px; line-height:20px;font-size:20px; color:#615968;}
+.footer_nav_p span{ margin:0px 20px;}
+.footer_nav_p a:hover{ text-decoration:none; cursor:pointer; color:#97bf0d;}
+.copyright{ text-align:center;font-size:14px; color:#615968; float:left; margin-left:150px;margin-top:14px; }
+.footer_code{ float:right; width: 120px; height: 120px; margin-right:140px; border:0px; display:block;}
+.footer_banner{width:100%; height:60px; min-width:1200px;position:relative; background:#fff; padding-top:30px; }
+.footer_banner .copy_p{ float:left; font-size:14px;margin-left:50px; color:#999;}
+.footer_banner .ipc_p{ float:right; font-size:16px;margin-right:140px;color:#615968;}
+
+.footer_gz_img{ background:center no-repeat; }
+.footerimg1{ background:url(../../images/pc/footer_img02_b.png);}
+.footerimg1:hover{ background:url(../../images/pc/footer_img02_a.png);}
+
+.footerimg2{ background:url(../../images/pc/footer_img03_b.png);}
+.footerimg2:hover{ background:url(../../images/pc/footer_img03_a.png);}
+
+.footerimg3{ background:url(../../images/pc/footer_img01_b.png);}
+.footerimg3:hover{ background:url(../../images/pc/footer_img01_a.png);}
+
+/*页头右上角登录后的样式*/
+.z_after_login { display: block;}
+.z_after_login, .z_logout { font-size: 14px; color: #fff;}
+
+/*==== pangzi ======*/
+/*index*/
+.z_font_box { width: 140px; margin-right: 0;}
+.z_font { font-size: 16px; line-height: 1.8;}
+.z_img img { width: 49px !important; height: 49px !important; margin-top: -5px;}
+
+

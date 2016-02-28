@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="BJWG_BACK"
+  id="myeclipse.1441683801913"
+  context-root="/BJWG_BACK"
+  j2ee-spec="6.0"
+  archive="BJWG_BACK.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

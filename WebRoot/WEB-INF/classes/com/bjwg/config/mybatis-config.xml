@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+     <settings>
+     	<!-- 控制台打印Mybatis 生成的SQL ，不要的话可以注释掉-->
+       <setting name="logImpl" value="LOG4J2" />
+         
+         <!-- 开启二级缓存，不用可以注释 -->
+          <!-- <setting name="cacheEnabled" value="true" />-->
+     </settings>
+     
+     <!-- MyBatis细粒度的刷新缓存插件（可在配置文件resource/dependencys.xml下配置）
+     	在MyBatis中select语句join的关联表更新是不会刷新缓存的，所以要用此插件
+      -->
+<!--     <plugins>-->
+<!--       <plugin interceptor="org.luanlouis.mybatis.plugin.cache.EnhancedCachingExecutor">-->
+<!--          <property name="dependency" value="dependencys.xml"/>-->
+<!--          <property name="cacheEnabled" value="true"/>-->
+<!--       </plugin>-->
+<!--  	  </plugins>-->
+</configuration>

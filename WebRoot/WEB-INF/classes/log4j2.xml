@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="1800">    
+
+	<properties>
+        <property name="LOG_HOME">${web:rootDir}/logs</property>
+        <property name="FILE_NAME_INFO">running</property>
+        <property name="FILE_NAME_ERROR">error</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>       
+        <!-- 
+        <RollingRandomAccessFile name="running-log"
+            fileName="${LOG_HOME}/${FILE_NAME_INFO}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME_INFO}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout
+                pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile> 
+        
+        <RollingRandomAccessFile name="error-log"
+            fileName="${LOG_HOME}/${FILE_NAME_ERROR}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME_ERROR}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout
+                pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile> 
+         -->
+    </Appenders>
+
+    <Loggers>         
+    	<!-- 
+    	<Root level="error">
+            <AppenderRef ref="error-log" />
+        </Root>
+     	-->
+    	<Logger name="com.bjwg.back.dao" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>   
+        <!-- 
+        <Logger level="debug" name="com.bjwg.back.controller" additivity="false">
+        	<AppenderRef ref="Console" />
+        </Logger>
+        
+        <Logger level="debug" name="com.bjwg.back.service" additivity="false">
+        	<AppenderRef ref="Console" />
+        </Logger>
+        
+        <Logger level="debug" name="com.alipay" additivity="false">
+        	<AppenderRef ref="Console" />
+        </Logger>
+        -->
+    </Loggers>
+</Configuration>

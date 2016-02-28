@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configInfo>
+    <info name="projectName" value="BJWG_BACK" title="八戒王国项目" />
+    
+    <info name="projectUrl" value="http://192.168.1.216:10010/BJWG_BACK/" title="BJWG_BACK项目访问路径" />
+    
+    <info name="projectRootUrl" value="D:\tomcat7\webapps\BJWG_BACK\" title="BJWG_BACK项目资源根路径访问路径" />
+	<!-- 百度地图接口 -->
+	<info name="baidu_map_interface" value="http://api.map.baidu.com/geocoder/v2/"></info>
+	<!-- 百度地图申请的ak -->
+	<info name="baidu_map_ak" value="DqTGazNxpb6tujm41W2ULrtb"></info>
+	
+	<!-- 短信接口url -->
+	<info name="sms_url" value="http://210.5.158.31/hy/"></info>
+	
+	<!-- 短信接口登录用户id -->
+	<info name="sms_uid" value="80075"></info>
+	
+	<!-- 短信接口MD5(企业代码+用户密码),32 位加密小写 -->
+	<info name="sms_auth" value="c07976626e6019f19d21b59083b3474c"></info>
+	
+	<!-- 图片存储域名 -->
+	<info name="photo_domain" value="http://img.hzd.com"></info>
+	<!-- 图片控制大小 -->
+	<info name="photo_size" value="@150h_150w_0e"></info>
+	<!-- 导出文件模板选择时 大小控制 -->
+	<info name="export_count_control" value="10000"></info>
+	<!-- 导出的最大数量 -->
+	<info name="max_export_count_control" value="100000"></info>
+	<!-- 导入店铺信息的excel文件大小 设置文件大小30M-->
+	<info name="shop_upload_max_size" value="31457280"></info>
+	<!-- 导入店铺信息的excel文件存放路经 -->
+	<info name="shop_upload_file_location" value="/upload/excel/"></info>
+	<!-- 导入店铺信息的excel文件类型 -->
+	<info name="shop_upload_file_type" value=".xls;.xlsx"></info>
+
+	<!-- 上传图片本地地址 -->
+	<info name="img_local_path" value="//resources//upload//img" title="八戒王国本地上传图片地址"></info>
+	<!-- 图片上传地址 -->
+	<info name="img_domain" value="http://192.168.1.216:10010/BJWG_BACK/"></info>
+	<!-- 图片显示规格 -->
+	<info name="img_size" value="@150h_150w_0e"></info>
+		<!-- 图片显示规格 -->
+	<info name="upload_head_img" value="/upload/img/"></info>
+	<!-- 上传附件地址 ：用户的邀请码二维码图片地址 相对路径 -->
+	<info name="upload_invite_code_path" value="/invite_code_img"></info>
+</configInfo>
